@@ -8,6 +8,7 @@ on:
 
 env:
   PLUGIN_NAME: dist
+  TAG_NAME: "dev"
 
 jobs:
   build:
@@ -40,7 +41,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           prerelease: false
-          tag_name: ${{ github.ref }}
+          name: ${{ env.TAG_NAME }}
+          tag_name: ${{ env.TAG_NAME }}
           files: |
             ./dist/main.js
             ./dist/manifest.json
