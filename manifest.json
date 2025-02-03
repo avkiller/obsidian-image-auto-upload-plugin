@@ -1,10 +1,10 @@
 {
-  "id": "obsidian-image-auto-upload-plugin",
+  "id": "obsidian-image-auto-upload-self",
   "name": "Image auto upload",
-  "version": "4.1.0",
+  "version": "1.0.0",
   "minAppVersion": "0.10.7",
   "description": "This plugin uploads images from your clipboard by PicGo",
-  "author": "renmu",
+  "author": "avkiller",
   "authorUrl": "https://github.com/renmu123/obsidian-image-auto-upload-plugin",
   "isDesktopOnly": false,
   "fundingUrl": "https://afdian.com/a/renmu123"
