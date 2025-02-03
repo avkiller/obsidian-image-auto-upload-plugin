@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "*"
+  workflow_dispatch:
 
 env:
   PLUGIN_NAME: dist
@@ -34,7 +35,19 @@ jobs:
           zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
           ls
           echo "::set-output name=tag_name::$(git tag --sort version:refname | tail -n 1)"
+     
+      - name: Publish Release
+        uses: softprops/action-gh-release@v1
+        if: env.UPLOAD_ARTIFACT == 'true'
+        with:
+          prerelease: true
+          tag_name: ${{ github.ref }}
+          files: |
+            ./dist/main.js
+            ./dist/manifest.json
+
       - name: Create Release
+        if: false
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -45,6 +58,7 @@ jobs:
           draft: false
           prerelease: false
       - name: Upload zip file
+        if: false
         id: upload-zip
         uses: actions/upload-release-asset@v1
         env:
@@ -55,6 +69,7 @@ jobs:
           asset_name: ${{ env.PLUGIN_NAME }}-${{ steps.build.outputs.tag_name }}.zip
           asset_content_type: application/zip
       - name: Upload main.js
+        if: false
         id: upload-main
         uses: actions/upload-release-asset@v1
         env:
@@ -65,6 +80,7 @@ jobs:
           asset_name: main.js
           asset_content_type: text/javascript
       - name: Upload manifest.json
+        if: false
         id: upload-manifest
         uses: actions/upload-release-asset@v1
         env:
