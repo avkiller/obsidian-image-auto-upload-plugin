@@ -38,9 +38,8 @@ jobs:
      
       - name: Publish Release
         uses: softprops/action-gh-release@v1
-        if: env.UPLOAD_ARTIFACT == 'true'
         with:
-          prerelease: true
+          prerelease: false
           tag_name: ${{ github.ref }}
           files: |
             ./dist/main.js
