@@ -33,7 +33,7 @@ jobs:
           pnpm run build
           mkdir ${{ env.PLUGIN_NAME }}
           cp main.js manifest.json ${{ env.PLUGIN_NAME }}
-          zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
+          zip -r obsidion-image-auto-upload.zip ${{ env.PLUGIN_NAME }}
           ls
           echo "::set-output name=tag_name::$(git tag --sort version:refname | tail -n 1)"
      
@@ -46,6 +46,7 @@ jobs:
           files: |
             ./dist/main.js
             ./dist/manifest.json
+            ./obsidion-image-auto-upload.zip
 
       - name: Create Release
         if: false
